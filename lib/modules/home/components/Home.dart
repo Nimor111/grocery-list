@@ -1,42 +1,10 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
-  Widget _drawer() {
-    return SizedBox(
-      width: 200,
-      child: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            Container(
-              height: 80.0,
-              child: DrawerHeader(
-                child: Container(
-                  padding: const EdgeInsets.all(0.0),
-                  child: Text(
-                    'Actions',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.deepOrange[800],
-                ),
-              ),
-            ),
-            ListTile(
-              title: Text('Item 1'),
-              onTap: () {},
-            ),
-            ListTile(
-              title: Text('Item 2'),
-              onTap: () {},
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+import 'package:grocery_list/modules/core/components/GroceryBar.dart';
+import 'package:grocery_list/modules/core/components/GroceryDrawer.dart';
+import 'package:grocery_list/modules/products/containers/ProductContainer.dart';
 
+class Home extends StatelessWidget {
   Widget _logoSection(String image, double width, double height) {
     return Image.asset(image, width: width, height: height, fit: BoxFit.cover);
   }
@@ -75,20 +43,28 @@ class Home extends StatelessWidget {
     );
   }
 
+  void _pushProducts(context) {
+    Navigator.of(context).push(
+      new MaterialPageRoute<void>(
+        builder: (BuildContext context) {
+          return ProductContainer();
+        }
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: _drawer(),
+      drawer: GroceryDrawer(),
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text('Grocery list'),
-      ),
+      appBar: GroceryBar(title: 'Grocery list'),
       body: ListView(children: [
         _logoSection('images/shopping-cart.png', 300, 200),
         _titleSection('My grocer', Icons.shopping_cart, Colors.deepOrange[800]),
         _homeButtonSection('Lists', Colors.deepOrange[800], () => {}),
         _homeButtonSection('New list', Colors.deepOrange[800], () => {}),
-        _homeButtonSection('Products', Colors.deepOrange[800], () => {}),
+        _homeButtonSection('Products', Colors.deepOrange[800], () => _pushProducts(context)),
       ]),
     );
   }
