@@ -7,7 +7,7 @@ class Home extends StatelessWidget {
       child: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
-          children: [
+          children: <Widget>[
             Container(
               height: 80.0,
               child: DrawerHeader(
@@ -42,16 +42,19 @@ class Home extends StatelessWidget {
   }
 
   Widget _titleSection(String text, IconData icon, Color color) {
-    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      Container(
-        padding: const EdgeInsets.all(32),
-        child: Text(
-          text,
-          style: TextStyle(fontSize: 32),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Container(
+          padding: const EdgeInsets.all(32),
+          child: Text(
+            text,
+            style: TextStyle(fontSize: 32),
+          ),
         ),
-      ),
-      Icon(icon, color: color),
-    ]);
+        Icon(icon, color: color),
+      ],
+    );
   }
 
   Widget _homeButtonSection(String text, Color color, Function onPressed) {
