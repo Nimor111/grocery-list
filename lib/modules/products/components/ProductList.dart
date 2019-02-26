@@ -8,8 +8,11 @@ class ProductList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: GroceryDrawer(),
-      appBar: GroceryBar(title: 'Grocery list'),
-      body: Text('Product list'),
+      appBar: GroceryBar(title: 'Products list'),
+      body: Container(
+        padding: const EdgeInsets.all(32),
+        child: Center(child: Text('Product list')),
+      ),
     );
   }
 }

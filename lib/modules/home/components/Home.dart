@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:grocery_list/modules/core/components/GroceryBar.dart';
 import 'package:grocery_list/modules/core/components/GroceryDrawer.dart';
-import 'package:grocery_list/modules/products/containers/ProductContainer.dart';
 
 class Home extends StatelessWidget {
   Widget _logoSection(String image, double width, double height) {
@@ -44,13 +43,7 @@ class Home extends StatelessWidget {
   }
 
   void _pushProducts(context) {
-    Navigator.of(context).push(
-      new MaterialPageRoute<void>(
-        builder: (BuildContext context) {
-          return ProductContainer();
-        }
-      ),
-    );
+    Navigator.pushNamed(context, '/products');
   }
 
   @override
