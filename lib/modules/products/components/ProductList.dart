@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:grocery_list/modules/core/components/GroceryBar.dart';
 import 'package:grocery_list/modules/core/components/GroceryDrawer.dart';
+import 'package:grocery_list/modules/products/components/ProductItem.dart';
 
 class ProductList extends StatelessWidget {
   @override
@@ -10,8 +11,14 @@ class ProductList extends StatelessWidget {
       drawer: GroceryDrawer(),
       appBar: GroceryBar(title: 'Products list'),
       body: Container(
-        padding: const EdgeInsets.all(32),
-        child: Center(child: Text('Product list')),
+        padding: const EdgeInsets.all(8),
+        child: ListView(
+          children: <Widget>[
+            ProductItem(),
+            ProductItem(),
+            ProductItem(),
+          ],
+        ),
       ),
     );
   }
