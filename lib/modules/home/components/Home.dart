@@ -5,7 +5,10 @@ import 'package:grocery_list/modules/core/components/GroceryDrawer.dart';
 
 class Home extends StatelessWidget {
   Widget _logoSection(String image, double width, double height) {
-    return Image.asset(image, width: width, height: height, fit: BoxFit.cover);
+    return Container(
+      padding: const EdgeInsets.all(32),
+      child: Image.asset(image, width: width, height: height, fit: BoxFit.contain),
+    );
   }
 
   Widget _titleSection(String text, IconData icon, Color color) {
@@ -46,6 +49,10 @@ class Home extends StatelessWidget {
     Navigator.pushNamed(context, '/products');
   }
 
+  void _pushLists(context) {
+    Navigator.pushNamed(context, '/lists');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,9 +62,10 @@ class Home extends StatelessWidget {
       body: ListView(children: [
         _logoSection('images/shopping-cart.png', 300, 200),
         _titleSection('My grocer', Icons.shopping_cart, Colors.deepOrange[800]),
-        _homeButtonSection('Lists', Colors.deepOrange[800], () => {}),
+        _homeButtonSection('Lists', Colors.deepOrange[800], () => _pushLists(context)),
         _homeButtonSection('New list', Colors.deepOrange[800], () => {}),
-        _homeButtonSection('Products', Colors.deepOrange[800], () => _pushProducts(context)),
+        _homeButtonSection(
+            'Products', Colors.deepOrange[800], () => _pushProducts(context)),
       ]),
     );
   }

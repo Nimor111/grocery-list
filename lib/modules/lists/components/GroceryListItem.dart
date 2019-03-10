@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ProductItem extends StatelessWidget {
+class ListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -9,9 +9,9 @@ class ProductItem extends StatelessWidget {
         child: Column(
           children: <Widget>[
             const ListTile(
-              leading: Icon(Icons.album),
-              title: Text('Product Item'),
-              subtitle: Text('Amount'),
+              leading: Icon(Icons.list),
+              title: Text('List Item'),
+              subtitle: Text('Number of products'),
             ),
           ],
         ),

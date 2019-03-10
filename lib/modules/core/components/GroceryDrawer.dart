@@ -33,8 +33,7 @@ class GroceryDrawer extends StatelessWidget {
             ListTile(
               title: Text('Lists'),
               onTap: () {
-                // TODO
-                // Navigator.pushNamed(context, '/lists');
+                Navigator.pushNamed(context, '/lists');
               },
             ),
             ListTile(
