@@ -15,9 +15,7 @@ class GroceryRaisedButton extends StatelessWidget {
       child: Container(
         child: Text(
           this.title,
-          style: TextStyle(
-            color: this.textColor
-          ),
+          style: TextStyle(color: this.textColor),
         ),
       ),
       onPressed: this.onPressed,
