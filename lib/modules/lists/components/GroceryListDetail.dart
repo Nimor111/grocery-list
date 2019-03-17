@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:grocery_list/modules/products/components/ProductItem.dart';
 import 'package:grocery_list/modules/core/components/GroceryBar.dart';
 import 'package:grocery_list/modules/core/components/GroceryDrawer.dart';
+import 'package:grocery_list/modules/core/components/GroceryRaisedButton.dart';
 
 class GroceryListDetail extends StatelessWidget {
   final products = <Widget>[ProductItem(), ProductItem(), ProductItem()];
@@ -16,16 +17,10 @@ class GroceryListDetail extends StatelessWidget {
         children: <Widget>[
           Container(
             padding: const EdgeInsets.all(32),
-            child: RaisedButton(
+            child: GroceryRaisedButton(
               color: Colors.deepOrange[800],
-              child: Container(
-                child: Text(
-                  'Add product',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ),
+              title: 'Add product',
+              textColor: Colors.white,
               onPressed: () => {},
             ),
           ),
