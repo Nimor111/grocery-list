@@ -7,7 +7,7 @@ import 'package:grocery_list/modules/lists/components/GroceryListItem.dart';
 class GroceryList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var lists = <Widget>[ListItem(), ListItem(), ListItem()];
+    final lists = <Widget>[ListItem(), ListItem(), ListItem()];
 
     return Scaffold(
       drawer: GroceryDrawer(),

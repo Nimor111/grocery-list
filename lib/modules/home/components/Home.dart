@@ -7,7 +7,8 @@ class Home extends StatelessWidget {
   Widget _logoSection(String image, double width, double height) {
     return Container(
       padding: const EdgeInsets.all(32),
-      child: Image.asset(image, width: width, height: height, fit: BoxFit.contain),
+      child:
+          Image.asset(image, width: width, height: height, fit: BoxFit.contain),
     );
   }
 
@@ -45,11 +46,11 @@ class Home extends StatelessWidget {
     );
   }
 
-  void _pushProducts(context) {
+  void _pushProducts(BuildContext context) {
     Navigator.pushNamed(context, '/products');
   }
 
-  void _pushLists(context) {
+  void _pushLists(BuildContext context) {
     Navigator.pushNamed(context, '/lists');
   }
 
@@ -62,7 +63,8 @@ class Home extends StatelessWidget {
       body: ListView(children: [
         _logoSection('images/shopping-cart.png', 300, 200),
         _titleSection('My grocer', Icons.shopping_cart, Colors.deepOrange[800]),
-        _homeButtonSection('Lists', Colors.deepOrange[800], () => _pushLists(context)),
+        _homeButtonSection(
+            'Lists', Colors.deepOrange[800], () => _pushLists(context)),
         _homeButtonSection('New list', Colors.deepOrange[800], () => {}),
         _homeButtonSection(
             'Products', Colors.deepOrange[800], () => _pushProducts(context)),

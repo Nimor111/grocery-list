@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class GroceryBar extends StatelessWidget implements PreferredSizeWidget {
-
   GroceryBar({@required this.title});
 
   final String title;

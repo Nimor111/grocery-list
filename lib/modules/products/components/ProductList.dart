@@ -14,8 +14,11 @@ class ProductList extends StatelessWidget {
       appBar: GroceryBar(title: 'Products list'),
       body: Container(
         padding: const EdgeInsets.all(8),
-        child: ListView(
-          children: products,
+        child: ListView.builder(
+          itemCount: products.length,
+          itemBuilder: (BuildContext context, int index) {
+            return products[index];
+          },
         ),
       ),
     );

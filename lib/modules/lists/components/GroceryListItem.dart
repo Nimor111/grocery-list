@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ListItem extends StatelessWidget {
+  void _pushListDetail(BuildContext context) {
+    Navigator.pushNamed(context, '/lists/detail');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -8,10 +12,11 @@ class ListItem extends StatelessWidget {
       child: Card(
         child: Column(
           children: <Widget>[
-            const ListTile(
+            ListTile(
               leading: Icon(Icons.list),
               title: Text('List Item'),
               subtitle: Text('Number of products'),
+              onTap: () => _pushListDetail(context),
             ),
           ],
         ),
