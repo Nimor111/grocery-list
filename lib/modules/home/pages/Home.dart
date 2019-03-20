@@ -53,6 +53,10 @@ class Home extends StatelessWidget {
     Navigator.pushNamed(context, '/lists');
   }
 
+  void _pushNewList(BuildContext context) {
+    Navigator.pushNamed(context, '/new-list');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Layout(
@@ -61,7 +65,7 @@ class Home extends StatelessWidget {
         _logoSection('images/shopping-cart.png', 300, 200),
         _titleSection('My grocer', Icons.shopping_cart, Colors.deepOrange[800]),
         _homeButtonSection('Lists', Colors.deepOrange[800], () => _pushLists(context)),
-        _homeButtonSection('New list', Colors.deepOrange[800], () => {}),
+        _homeButtonSection('New list', Colors.deepOrange[800], () => _pushNewList(context)),
         _homeButtonSection('Products', Colors.deepOrange[800], () => _pushProducts(context)),
       ]),
     );
