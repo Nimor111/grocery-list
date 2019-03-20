@@ -4,6 +4,8 @@ import 'package:grocery_list/modules/products/components/ProductItem.dart';
 import 'package:grocery_list/modules/core/components/GroceryBar.dart';
 import 'package:grocery_list/modules/core/components/GroceryDrawer.dart';
 
+import 'package:grocery_list/modules/core/components/Layout.dart';
+
 class GroceryListDetail extends StatelessWidget {
   final products = <Widget>[
     ProductItem(),
@@ -23,9 +25,8 @@ class GroceryListDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: GroceryBar(title: 'List detail'),
-      drawer: GroceryDrawer(),
+    return Layout(
+      title: 'List detail',
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: null,

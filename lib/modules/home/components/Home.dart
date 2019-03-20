@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:grocery_list/modules/core/components/GroceryBar.dart';
-import 'package:grocery_list/modules/core/components/GroceryDrawer.dart';
+import 'package:grocery_list/modules/core/components/Layout.dart';
 
 class Home extends StatelessWidget {
   Widget _logoSection(String image, double width, double height) {
@@ -56,18 +55,14 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: GroceryDrawer(),
-      backgroundColor: Colors.white,
-      appBar: GroceryBar(title: 'Grocery list'),
+    return Layout(
+      title: 'Grocery List',
       body: ListView(children: [
         _logoSection('images/shopping-cart.png', 300, 200),
         _titleSection('My grocer', Icons.shopping_cart, Colors.deepOrange[800]),
-        _homeButtonSection(
-            'Lists', Colors.deepOrange[800], () => _pushLists(context)),
+        _homeButtonSection('Lists', Colors.deepOrange[800], () => _pushLists(context)),
         _homeButtonSection('New list', Colors.deepOrange[800], () => {}),
-        _homeButtonSection(
-            'Products', Colors.deepOrange[800], () => _pushProducts(context)),
+        _homeButtonSection('Products', Colors.deepOrange[800], () => _pushProducts(context)),
       ]),
     );
   }
