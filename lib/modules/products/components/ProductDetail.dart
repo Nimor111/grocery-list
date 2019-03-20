@@ -13,7 +13,8 @@ class ProductDetail extends StatelessWidget {
         children: <Widget>[
           Container(
             padding: const EdgeInsets.all(32),
-            child: Image.asset('images/default.png', width: 300, height: 300, fit: BoxFit.contain),
+            child: Image.asset('images/default.png',
+                width: 300, height: 300, fit: BoxFit.contain),
           ),
           Container(
             padding: const EdgeInsets.all(32),
@@ -21,11 +22,9 @@ class ProductDetail extends StatelessWidget {
               children: <Widget>[
                 Container(
                   padding: const EdgeInsets.all(16),
-                  child: Text(
-                    'Product name',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 32)
-                  ),
+                  child: Text('Product name',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 32)),
                 ),
                 Text(
                   'This is a pretty awesome product that you should buy, like seriously.',
