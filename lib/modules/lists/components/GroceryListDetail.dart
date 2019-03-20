@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:grocery_list/modules/products/components/ProductItem.dart';
 import 'package:grocery_list/modules/core/components/GroceryBar.dart';
 import 'package:grocery_list/modules/core/components/GroceryDrawer.dart';
-import 'package:grocery_list/modules/core/components/GroceryRaisedButton.dart';
 
 class GroceryListDetail extends StatelessWidget {
   final products = <Widget>[

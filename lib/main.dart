@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:grocery_list/modules/home/components/Home.dart';
+
 import 'package:grocery_list/modules/products/containers/ProductContainer.dart';
+import 'package:grocery_list/modules/products/components/ProductDetail.dart';
+
 import 'package:grocery_list/modules/lists/containers/GroceryListContainer.dart';
 import 'package:grocery_list/modules/lists/containers/GroceryListDetailContainer.dart';
 
@@ -18,6 +21,7 @@ class GroceryApp extends StatelessWidget {
         '/products': (context) => ProductContainer(),
         '/lists': (context) => GroceryListContainer(),
         '/lists/detail': (context) => GroceryListDetailContainer(),
+        '/products/detail': (context) => ProductDetail(),
       },
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
