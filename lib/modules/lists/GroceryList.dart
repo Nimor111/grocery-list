@@ -9,8 +9,17 @@ class GroceryList extends StatelessWidget {
   Widget build(BuildContext context) {
     final lists = <Widget>[ListItem(), ListItem(), ListItem()];
 
+    // TODO remove duplicate code
+    void _pushAddList(BuildContext context) {
+      Navigator.pushNamed(context, '/new-list');
+    }
+
     return Layout(
       title: 'Grocery lists',
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => _pushAddList(context),
+      ),
       body: Container(
         padding: const EdgeInsets.all(8),
         child: ListView(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:grocery_list/modules/core/components/Layout.dart';
 
-
 class CreateGroceryListFormComponent extends StatelessWidget {
   CreateGroceryListFormComponent({@required this.formKey});
 
@@ -28,13 +27,14 @@ class CreateGroceryListFormComponent extends StatelessWidget {
                       if (value.isEmpty) {
                         return 'Please enter some text';
                       }
-                    }
+                    },
                   ),
                 ),
                 RaisedButton(
                   onPressed: () {
                     if (formKey.currentState.validate()) {
-                      Scaffold.of(context).showSnackBar(SnackBar(content: Text('Processing Data')));
+                      Scaffold.of(context).showSnackBar(
+                          SnackBar(content: Text('Processing Data')));
                     }
                   },
                   child: Text('Submit'),

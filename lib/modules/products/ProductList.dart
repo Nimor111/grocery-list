@@ -9,11 +9,15 @@ class ProductList extends StatelessWidget {
   Widget build(BuildContext context) {
     var products = <Widget>[ProductItem(), ProductItem(), ProductItem()];
 
+    void _pushAddProduct(BuildContext context) {
+      Navigator.pushNamed(context, '/new-product');
+    }
+
     return Layout(
       title: 'Products list',
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: null,
+        onPressed: () => _pushAddProduct(context),
       ),
       body: ListView(
         children: <Widget>[
