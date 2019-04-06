@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "657950352099",
+    "firebase_url": "https://grocery-list-1afbf.firebaseio.com",
+    "project_id": "grocery-list-1afbf",
+    "storage_bucket": "grocery-list-1afbf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:657950352099:android:302278128336fd36",
+        "android_client_info": {
+          "package_name": "com.nimor111.grocerylist"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAISfJNNbqJSW_5V5AuvBGvyOLCSiTk4V4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "657950352099-3m6iafq88aierfdclr14qa03jmde21lt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
