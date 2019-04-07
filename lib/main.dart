@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+
+import 'package:firebase_core/firebase_core.dart';
 
 import 'package:grocery_list/modules/home/Home.dart';
 
@@ -10,7 +14,9 @@ import 'package:grocery_list/modules/lists/containers/GroceryListContainer.dart'
 import 'package:grocery_list/modules/lists/containers/CreateGroceryListForm.dart';
 import 'package:grocery_list/modules/products/containers/CreateProductForm.dart';
 
-void main() => runApp(GroceryApp());
+void main() {
+  runApp(GroceryApp());
+}
 
 class GroceryApp extends StatelessWidget {
   @override

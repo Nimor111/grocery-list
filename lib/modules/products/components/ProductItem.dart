@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_list/modules/products/models/Product.dart';
 
 class ProductItem extends StatelessWidget {
+  ProductItem({this.product});
+
+  final Product product;
+
   void _pushProductDetail(BuildContext context) {
     Navigator.pushNamed(context, '/products/detail');
   }
@@ -14,7 +19,7 @@ class ProductItem extends StatelessWidget {
           children: <Widget>[
             ListTile(
               leading: Icon(Icons.album),
-              title: Text('Product Item'),
+              title: Text(product != null ? product.name : 'Product name'),
               subtitle: Text('Amount'),
               onTap: () => _pushProductDetail(context),
             ),
