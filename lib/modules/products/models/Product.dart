@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Product {
-  final String name;
-  final String description;
-  final DocumentReference reference;
+  String name;
+  String description;
+  DocumentReference reference;
+
+  Product({this.name, this.description, this.reference});
 
   Product.fromMap(Map<String, dynamic> map, {this.reference})
       : assert(map['name'] != null),
@@ -12,6 +14,8 @@ class Product {
 
   Product.fromSnapshot(DocumentSnapshot snapshot)
       : this.fromMap(snapshot.data, reference: snapshot.reference);
+
+  Map<String, dynamic> toJson() => {'name': name, 'description': description};
 
   @override
   String toString() => "Product<$name>";
