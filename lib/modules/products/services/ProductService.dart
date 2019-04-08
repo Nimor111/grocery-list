@@ -4,12 +4,18 @@ import 'package:grocery_list/modules/products/models/Product.dart';
 class ProductService {
   ProductService();
 
-  addProduct(Product newProduct) async {
-    final CollectionReference productsReference =
-        Firestore.instance.collection('products');
+  final CollectionReference _productsReference =
+      Firestore.instance.collection('products');
 
+  addProduct(Product newProduct) async {
     Firestore.instance.runTransaction((Transaction tx) async {
-      await productsReference.add(newProduct.toJson());
+      await this._productsReference.add(newProduct.toJson());
+    });
+  }
+
+  deleteProduct(String id) async {
+    Firestore.instance.runTransaction((Transaction tx) async {
+      await this._productsReference.document(id).delete();
     });
   }
 }

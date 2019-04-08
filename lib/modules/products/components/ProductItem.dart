@@ -7,7 +7,7 @@ class ProductItem extends StatelessWidget {
   final Product product;
 
   void _pushProductDetail(BuildContext context) {
-    Navigator.pushNamed(context, '/products/detail');
+    Navigator.pushNamed(context, '/products/detail', arguments: this.product);
   }
 
   @override
