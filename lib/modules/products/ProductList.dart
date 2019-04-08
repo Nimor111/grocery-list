@@ -12,10 +12,14 @@ class ProductList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //  var products = <Widget>[ProductItem(), ProductItem(), ProductItem()];
-
     void _pushAddProduct(BuildContext context) {
       Navigator.pushNamed(context, '/new-product');
+    }
+
+    Widget _buildProductItem(BuildContext context, int index) {
+      return products != []
+          ? ProductItem(product: products[index])
+          : ProductItem();
     }
 
     return Layout(
@@ -24,17 +28,13 @@ class ProductList extends StatelessWidget {
         child: Icon(Icons.add),
         onPressed: () => _pushAddProduct(context),
       ),
-      body: ListView(
+      body: PageView(
         children: <Widget>[
           Container(
             padding: const EdgeInsets.all(8),
             child: ListView.builder(
               itemCount: products.length,
-              itemBuilder: (BuildContext context, int index) {
-                return products != []
-                    ? ProductItem(product: products[index])
-                    : ProductItem();
-              },
+              itemBuilder: _buildProductItem,
               shrinkWrap: true,
             ),
           ),

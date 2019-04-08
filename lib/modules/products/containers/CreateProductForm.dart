@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:grocery_list/modules/core/components/Layout.dart';
 
 import 'package:grocery_list/modules/products/models/Product.dart';
+import 'package:grocery_list/modules/products/services/ProductService.dart';
 
 class CreateProductForm extends StatefulWidget {
   @override
@@ -11,30 +12,31 @@ class CreateProductForm extends StatefulWidget {
 
 class _CreateProductFormState extends State<CreateProductForm> {
   final formKey = GlobalKey<FormState>();
+  ProductService productService = ProductService();
 
   String _name;
   String _description;
 
   _saveForm() {
-    var form = formKey.currentState;
+    final form = formKey.currentState;
     if (form.validate()) {
       form.save();
+
       CollectionReference productsReference =
           Firestore.instance.collection("products");
 
       final Product newProduct =
           new Product(name: _name, description: _description);
 
-      Firestore.instance.runTransaction((Transaction tx) async {
-        await productsReference.add(newProduct.toJson()).catchError((e) {
-          showError();
-        });
-        Navigator.of(context).pop();
+      productService.addProduct(newProduct).catchError((e) {
+        _showError();
       });
+
+      Navigator.of(context).pop();
     }
   }
 
-  showError() {
+  _showError() {
     Scaffold.of(context).showSnackBar(
       SnackBar(
         content: Text('Error while submitting form!'),
