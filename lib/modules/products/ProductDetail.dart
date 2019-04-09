@@ -8,6 +8,11 @@ class ProductDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     Product product = ModalRoute.of(context).settings.arguments;
 
+    final name = product == null ? 'No name' : product.name;
+    final description = product == null
+        ? 'No description'
+        : (product.description == '' ? 'No description' : product.description);
+
     return Layout(
       title: 'Product detail',
       body: ListView(
@@ -23,14 +28,12 @@ class ProductDetail extends StatelessWidget {
               children: <Widget>[
                 Container(
                   padding: const EdgeInsets.all(16),
-                  child: Text(product.name,
+                  child: Text(name,
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 32)),
                 ),
                 Text(
-                  product.description != ""
-                      ? product.description
-                      : 'No description.',
+                  description,
                   textAlign: TextAlign.justify,
                   style: TextStyle(fontSize: 16),
                 ),
