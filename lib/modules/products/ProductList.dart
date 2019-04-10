@@ -6,9 +6,10 @@ import 'package:grocery_list/modules/core/components/Layout.dart';
 import 'package:grocery_list/modules/products/models/Product.dart';
 
 class ProductList extends StatelessWidget {
-  ProductList({@required this.products});
+  ProductList({@required this.products, this.deleteProduct});
 
   final List<Product> products;
+  final Function deleteProduct;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class ProductList extends StatelessWidget {
 
     Widget _buildProductItem(BuildContext context, int index) {
       return products != []
-          ? ProductItem(product: products[index])
+          ? ProductItem(product: products[index], deleteProduct: deleteProduct)
           : ProductItem();
     }
 
