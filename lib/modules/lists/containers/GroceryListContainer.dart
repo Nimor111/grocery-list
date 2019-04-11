@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:grocery_list/modules/products/models/Product.dart';
 import 'package:grocery_list/modules/lists/GroceryList.dart';
 import 'package:grocery_list/modules/lists/models/GroceryListModel.dart';
 import 'package:grocery_list/modules/lists/services/GroceryListService.dart';

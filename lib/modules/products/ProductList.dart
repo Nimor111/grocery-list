@@ -24,7 +24,7 @@ class ProductList extends StatelessWidget {
     }
 
     return Layout(
-      title: 'Products list',
+      title: 'All products',
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () => _pushAddProduct(context),
