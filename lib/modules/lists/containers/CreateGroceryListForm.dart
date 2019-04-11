@@ -24,7 +24,6 @@ class _CreateGroceryListFormState extends State<CreateGroceryListForm> {
       final GroceryListModel newGroceryList = new GroceryListModel(name: _name);
 
       listService.addGroceryList(newGroceryList).catchError((e) {
-        print("ERROR: " + e);
         return _showError();
       });
 
@@ -33,6 +32,7 @@ class _CreateGroceryListFormState extends State<CreateGroceryListForm> {
   }
 
   // TODO remove duplicate code
+  // TODO this does not work - context error
   _showError() {
     Scaffold.of(context).showSnackBar(
       SnackBar(
