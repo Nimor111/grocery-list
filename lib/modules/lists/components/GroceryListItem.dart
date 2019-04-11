@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_list/modules/lists/models/GroceryListModel.dart';
 
 class ListItem extends StatelessWidget {
+  ListItem({this.list, this.deleteList});
+
+  final GroceryListModel list;
+  final Function deleteList;
+
   void _pushListDetail(BuildContext context) {
-    Navigator.pushNamed(context, '/lists/detail');
+    Navigator.pushNamed(context, '/lists/detail', arguments: this.list);
   }
 
   @override
@@ -14,9 +20,15 @@ class ListItem extends StatelessWidget {
           children: <Widget>[
             ListTile(
               leading: Icon(Icons.list),
-              title: Text('List Item'),
+              title: Text(list != null ? list.name : 'List name'),
               subtitle: Text('Number of products'),
               onTap: () => _pushListDetail(context),
+              trailing: IconButton(
+                icon: Icon(Icons.delete),
+                onPressed: () {
+                  deleteList(list.documentID);
+                },
+              ),
             ),
           ],
         ),

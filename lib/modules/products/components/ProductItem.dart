@@ -28,7 +28,6 @@ class ProductItem extends StatelessWidget {
                 onPressed: () {
                   deleteProduct(product.documentID);
                 },
-                // onPressed: null,
               ),
             ),
           ],

@@ -4,7 +4,7 @@ import 'package:grocery_list/modules/home/Home.dart';
 
 import 'package:grocery_list/modules/products/ProductDetail.dart';
 
-import 'package:grocery_list/modules/lists/containers/GroceryListDetailContainer.dart';
+import 'package:grocery_list/modules/lists/GroceryListDetail.dart';
 import 'package:grocery_list/modules/products/containers/ProductContainer.dart';
 import 'package:grocery_list/modules/lists/containers/GroceryListContainer.dart';
 import 'package:grocery_list/modules/lists/containers/CreateGroceryListForm.dart';
@@ -24,7 +24,7 @@ class GroceryApp extends StatelessWidget {
         '/': (context) => Home(),
         '/products': (context) => ProductContainer(),
         '/lists': (context) => GroceryListContainer(),
-        '/lists/detail': (context) => GroceryListDetailContainer(),
+        '/lists/detail': (context) => GroceryListDetail(),
         '/products/detail': (context) => ProductDetail(),
         '/new-list': (context) => CreateGroceryListForm(),
         '/new-product': (context) => CreateProductForm(),
