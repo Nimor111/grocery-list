@@ -22,8 +22,12 @@ class GroceryListModel {
       : this.fromMap(snapshot.documentID, snapshot.data,
             reference: snapshot.reference);
 
-  Map<String, dynamic> toJson() =>
-      {'name': name, 'products': products.map((product) => product.toJson())};
+  Map<String, dynamic> toJson() => {
+        'name': name,
+        'products': products == null
+            ? List<Product>()
+            : products.map((product) => product.toJson())
+      };
 
   @override
   String toString() => "Grocery List<$name>";

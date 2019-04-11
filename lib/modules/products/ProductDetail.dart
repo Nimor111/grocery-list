@@ -7,10 +7,9 @@ class ProductDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Product product = ModalRoute.of(context).settings.arguments;
-    print("Product: " + product.toString());
 
     final String name = product == null ? 'No name' : product.name;
-    final String description = product?.description ??= 'No description';
+    final String description = product?.description;
 
     return Layout(
       title: 'Product detail',

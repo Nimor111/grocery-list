@@ -23,9 +23,6 @@ class _CreateProductFormState extends State<CreateProductForm> {
     if (form.validate()) {
       form.save();
 
-      CollectionReference productsReference =
-          Firestore.instance.collection("products");
-
       final Product newProduct =
           new Product(name: _name, description: _description);
 
