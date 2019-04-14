@@ -13,13 +13,18 @@ class ProductList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String listId = ModalRoute.of(context).settings.arguments;
+
     void _pushAddProduct(BuildContext context) {
       Navigator.pushNamed(context, '/new-product');
     }
 
     Widget _buildProductItem(BuildContext context, int index) {
       return products != []
-          ? ProductItem(product: products[index], deleteProduct: deleteProduct)
+          ? ProductItem(
+              product: products[index],
+              deleteProduct: deleteProduct,
+              listId: listId)
           : ProductItem();
     }
 

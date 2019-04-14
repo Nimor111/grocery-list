@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:grocery_list/modules/lists/models/GroceryListModel.dart';
+import 'package:grocery_list/modules/products/models/Product.dart';
 
 class GroceryListService {
   GroceryListService();
@@ -20,6 +21,23 @@ class GroceryListService {
 
       if (listSnapshot.exists) {
         await tx.delete(listRef);
+      }
+    });
+  }
+
+  addProductToList(Product product, String id) async {
+    final DocumentReference listRef =
+        Firestore.instance.document('lists/' + id);
+
+    Firestore.instance.runTransaction((Transaction tx) async {
+      final DocumentSnapshot listSnapshot = await tx.get(listRef);
+
+      Map<String, dynamic> newProductMap = product.toJson();
+
+      if (listSnapshot.exists) {
+        await tx.update(listRef, <String, dynamic>{
+          'products': FieldValue.arrayUnion([newProductMap]),
+        }).catchError((e) => print(e));
       }
     });
   }
