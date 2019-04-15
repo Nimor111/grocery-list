@@ -24,7 +24,9 @@ class ProductList extends StatelessWidget {
           ? ProductItem(
               product: products[index],
               deleteProduct: deleteProduct,
-              listId: args['listId'])
+              listId: args != null ? args['listId'] : null,
+              addToList: args != null ? args['addToList'] : null,
+            )
           : ProductItem();
     }
 

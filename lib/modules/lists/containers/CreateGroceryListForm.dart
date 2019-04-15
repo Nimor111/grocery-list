@@ -16,7 +16,7 @@ class _CreateGroceryListFormState extends State<CreateGroceryListForm> {
 
   String _name;
 
-  _saveForm() {
+  _saveForm(BuildContext context) {
     final form = formKey.currentState;
     if (form.validate()) {
       form.save();
@@ -24,7 +24,7 @@ class _CreateGroceryListFormState extends State<CreateGroceryListForm> {
       final GroceryListModel newGroceryList = new GroceryListModel(name: _name);
 
       listService.addGroceryList(newGroceryList).catchError((e) {
-        return _showError();
+        return _showError(context);
       });
 
       Navigator.of(context).pushNamed('/lists');
@@ -33,7 +33,7 @@ class _CreateGroceryListFormState extends State<CreateGroceryListForm> {
 
   // TODO remove duplicate code
   // TODO this does not work - context error
-  _showError() {
+  _showError(BuildContext context) {
     Scaffold.of(context).showSnackBar(
       SnackBar(
         content: Text('Error while submitting form!'),
@@ -66,7 +66,7 @@ class _CreateGroceryListFormState extends State<CreateGroceryListForm> {
                   ),
                 ),
                 RaisedButton(
-                  onPressed: _saveForm,
+                  onPressed: () => _saveForm(context),
                   child: Text('Submit'),
                 ),
               ],

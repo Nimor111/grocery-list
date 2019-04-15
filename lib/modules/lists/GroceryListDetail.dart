@@ -7,15 +7,17 @@ import 'package:grocery_list/modules/lists/models/GroceryListModel.dart';
 import 'package:grocery_list/modules/lists/services/GroceryListService.dart';
 
 class GroceryListDetail extends StatelessWidget {
+  final listService = GroceryListService();
+
   void _pushAvailableProducts(BuildContext context, GroceryListModel list) {
     Navigator.of(context).pushNamed('/products', arguments: <String, dynamic>{
       'listId': list.documentID,
+      'addToList': listService.addProductToList,
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    GroceryListService listService = GroceryListService();
     GroceryListModel list = ModalRoute.of(context).settings.arguments;
     final listProductItems = list.products
         .map((product) => ProductItem(

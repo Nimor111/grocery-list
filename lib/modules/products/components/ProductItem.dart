@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_list/modules/products/models/Product.dart';
-import 'package:grocery_list/modules/lists/services/GroceryListService.dart';
 
 class ProductItem extends StatelessWidget {
   ProductItem(
-      {this.product, this.deleteProduct, this.listId, this.removeFromList});
+      {this.product,
+      this.deleteProduct,
+      this.listId,
+      this.removeFromList,
+      this.addToList});
 
   final Product product;
   final Function deleteProduct;
   final Function removeFromList;
+  final Function addToList;
   final String listId;
 
   void _pushProductDetail(BuildContext context) {
@@ -17,8 +21,6 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    GroceryListService listService = GroceryListService();
-
     return Container(
       padding: const EdgeInsets.all(8),
       child: Card(
@@ -35,9 +37,9 @@ class ProductItem extends StatelessWidget {
                     ? () => deleteProduct(product.documentID)
                     : () => removeFromList(listId, product),
               ),
-              onLongPress: listId != null
+              onLongPress: addToList != null
                   ? () {
-                      listService.addProductToList(product, listId);
+                      addToList(product, listId);
                       Scaffold.of(context).showSnackBar(SnackBar(
                         content: Text("Product added!"),
                       ));
