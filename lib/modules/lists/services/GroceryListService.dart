@@ -41,4 +41,20 @@ class GroceryListService {
       }
     });
   }
+
+  removeProductFromList(String listId, Product product) async {
+    final DocumentReference listRef =
+        Firestore.instance.document('lists/' + listId);
+
+    Firestore.instance.runTransaction((Transaction tx) async {
+      final DocumentSnapshot listSnapshot = await tx.get(listRef);
+
+      Map<String, dynamic> productMap = product.toJson();
+      if (listSnapshot.exists) {
+        await tx.update(listRef, <String, dynamic>{
+          'products': FieldValue.arrayRemove([productMap]),
+        }).catchError((e) => print(e));
+      }
+    });
+  }
 }
