@@ -80,3 +80,7 @@ build/
 auto-save-list
 tramp
 .\#*
+
+# User files
+ideas.md
+playground/
