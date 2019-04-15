@@ -34,7 +34,9 @@ class ProductItem extends StatelessWidget {
               onLongPress: listId != null
                   ? () {
                       listService.addProductToList(product, listId);
-                      Navigator.of(context).pop();
+                      Scaffold.of(context).showSnackBar(SnackBar(
+                        content: Text("Product added!"),
+                      ));
                     }
                   : null,
             ),
