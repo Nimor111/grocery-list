@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:grocery_list/modules/products/components/ProductItem.dart';
-import 'package:grocery_list/modules/products/ProductList.dart';
 
 import 'package:grocery_list/modules/core/components/Layout.dart';
 import 'package:grocery_list/modules/lists/models/GroceryListModel.dart';
-import 'package:grocery_list/modules/products/models/Product.dart';
 import 'package:grocery_list/modules/lists/services/GroceryListService.dart';
 
 class GroceryListDetail extends StatelessWidget {
@@ -23,6 +21,7 @@ class GroceryListDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     GroceryListModel list = ModalRoute.of(context).settings.arguments;
 
+    // TODO move to service as get list products?
     final listProductItems = new StreamBuilder<DocumentSnapshot>(
         stream: Firestore.instance
             .collection('/lists')
@@ -49,12 +48,6 @@ class GroceryListDetail extends StatelessWidget {
             ],
           );
         });
-    // list.products
-    // .map((product) => ProductItem(
-    //     product: product,
-    //     listId: list.documentID,
-    //     removeFromList: listService.removeProductFromList))
-    // .toList();
 
     return Layout(
       title: list.name,

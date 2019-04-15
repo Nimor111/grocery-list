@@ -17,7 +17,7 @@ class _CreateProductFormState extends State<CreateProductForm> {
   String _name;
   String _description;
 
-  _saveForm() {
+  _saveForm(BuildContext context) {
     final form = formKey.currentState;
     if (form.validate()) {
       form.save();
@@ -26,14 +26,14 @@ class _CreateProductFormState extends State<CreateProductForm> {
           new Product(name: _name, description: _description);
 
       productService.addProduct(newProduct).catchError((e) {
-        _showError();
+        _showError(context);
       });
 
       Navigator.of(context).pop();
     }
   }
 
-  _showError() {
+  _showError(BuildContext context) {
     Scaffold.of(context).showSnackBar(
       SnackBar(
         content: Text('Error while submitting form!'),
@@ -44,7 +44,7 @@ class _CreateProductFormState extends State<CreateProductForm> {
   @override
   Widget build(BuildContext context) {
     return Layout(
-      title: 'Create product form',
+      title: 'Add a new product',
       body: Builder(builder: (BuildContext context) {
         return Form(
           key: formKey,
@@ -74,7 +74,7 @@ class _CreateProductFormState extends State<CreateProductForm> {
                 ),
               ),
               RaisedButton(
-                onPressed: _saveForm,
+                onPressed: () => _saveForm(context),
                 child: Text('Submit'),
               ),
             ],

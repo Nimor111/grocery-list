@@ -60,7 +60,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Layout(
-      title: 'Grocery List',
+      title: 'My grocer',
       body: ListView(children: [
         _logoSection('images/shopping-cart.png', 300, 200),
         _titleSection('My grocer', Icons.shopping_cart, Colors.deepOrange[800]),
