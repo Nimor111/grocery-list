@@ -6,14 +6,16 @@ import 'package:grocery_list/modules/core/components/Layout.dart';
 import 'package:grocery_list/modules/products/models/Product.dart';
 
 class ProductList extends StatelessWidget {
-  ProductList({@required this.products, this.deleteProduct});
+  ProductList(
+      {@required this.products, this.deleteProduct, this.removeFromList});
 
   final List<Product> products;
   final Function deleteProduct;
+  final Function removeFromList;
 
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic> args = ModalRoute.of(context).settings.arguments;
+    final dynamic args = ModalRoute.of(context).settings.arguments;
 
     void _pushAddProduct(BuildContext context) {
       Navigator.pushNamed(context, '/new-product');
@@ -24,6 +26,7 @@ class ProductList extends StatelessWidget {
           ? ProductItem(
               product: products[index],
               deleteProduct: deleteProduct,
+              removeFromList: removeFromList,
               listId: args != null ? args['listId'] : null,
               addToList: args != null ? args['addToList'] : null,
             )
