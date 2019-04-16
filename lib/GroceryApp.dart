@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-import 'package:grocery_list/modules/home/Home.dart';
+import 'package:grocery_list/screens/home_screen.dart';
 
-import 'package:grocery_list/modules/products/ProductDetail.dart';
+import 'package:grocery_list/screens/product_detail_screen.dart';
 
-import 'package:grocery_list/modules/lists/GroceryListDetail.dart';
-import 'package:grocery_list/modules/products/containers/ProductContainer.dart';
-import 'package:grocery_list/modules/lists/containers/GroceryListContainer.dart';
-import 'package:grocery_list/modules/lists/containers/CreateGroceryListForm.dart';
-import 'package:grocery_list/modules/products/containers/CreateProductForm.dart';
+import 'package:grocery_list/screens/grocery_list_detail_screen.dart';
+import 'package:grocery_list/screens/product_list_screen.dart';
+import 'package:grocery_list/screens/grocery_list_screen.dart';
+import 'package:grocery_list/screens/create_grocery_list_screen.dart';
+import 'package:grocery_list/screens/create_product_screen.dart';
 
 class GroceryApp extends StatelessWidget {
   @override
@@ -17,13 +17,13 @@ class GroceryApp extends StatelessWidget {
       title: 'Flutter Demo',
       initialRoute: '/',
       routes: {
-        '/': (context) => Home(),
-        '/products': (context) => ProductContainer(),
-        '/lists': (context) => GroceryListContainer(),
-        '/lists/detail': (context) => GroceryListDetail(),
-        '/products/detail': (context) => ProductDetail(),
-        '/new-list': (context) => CreateGroceryListForm(),
-        '/new-product': (context) => CreateProductForm(),
+        '/': (context) => HomeScreen(),
+        '/products': (context) => ProductListScreen(),
+        '/lists': (context) => GroceryListScreen(),
+        '/lists/detail': (context) => GroceryListDetailScreen(),
+        '/products/detail': (context) => ProductDetailScreen(),
+        '/new-list': (context) => CreateGroceryListScreen(),
+        '/new-product': (context) => CreateProductScreen(),
       },
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,

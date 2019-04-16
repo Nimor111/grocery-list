@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:grocery_list/modules/lists/components/GroceryListItem.dart';
+import 'package:grocery_list/widgets/grocery_list_item.dart';
 
-import 'package:grocery_list/modules/core/components/Layout.dart';
-import 'package:grocery_list/modules/lists/models/GroceryListModel.dart';
+import 'package:grocery_list/widgets/layout.dart';
+import 'package:grocery_list/models/grocery_list_model.dart';
 
 class GroceryList extends StatelessWidget {
   GroceryList({this.lists, this.deleteList});

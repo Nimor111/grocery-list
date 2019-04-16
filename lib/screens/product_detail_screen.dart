@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:grocery_list/modules/core/components/Layout.dart';
-import 'package:grocery_list/modules/products/models/Product.dart';
+import 'package:grocery_list/widgets/layout.dart';
+import 'package:grocery_list/models/product.dart';
 
-class ProductDetail extends StatelessWidget {
+class ProductDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Product product = ModalRoute.of(context).settings.arguments;

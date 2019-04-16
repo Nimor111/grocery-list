@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:grocery_list/modules/products/components/ProductItem.dart';
+import 'package:grocery_list/widgets/product_item.dart';
 
-import 'package:grocery_list/modules/core/components/Layout.dart';
-import 'package:grocery_list/modules/lists/models/GroceryListModel.dart';
-import 'package:grocery_list/modules/lists/services/GroceryListService.dart';
+import 'package:grocery_list/widgets/layout.dart';
+import 'package:grocery_list/models/grocery_list_model.dart';
+import 'package:grocery_list/services/grocery_list_service.dart';
 
-class GroceryListDetail extends StatelessWidget {
+class GroceryListDetailScreen extends StatelessWidget {
   final listService = GroceryListService();
 
   void _pushAvailableProducts(BuildContext context, GroceryListModel list) {

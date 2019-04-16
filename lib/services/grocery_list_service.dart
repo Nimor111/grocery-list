@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:grocery_list/modules/lists/models/GroceryListModel.dart';
-import 'package:grocery_list/modules/products/models/Product.dart';
+import 'package:grocery_list/models/grocery_list_model.dart';
+import 'package:grocery_list/models/product.dart';
 
 class GroceryListService {
   GroceryListService();

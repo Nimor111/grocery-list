@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:grocery_list/modules/core/components/Layout.dart';
+import 'package:grocery_list/widgets/layout.dart';
 
-class Home extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
   Widget _logoSection(String image, double width, double height) {
     return Container(
       padding: const EdgeInsets.all(32),

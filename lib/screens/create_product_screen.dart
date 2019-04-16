@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_list/modules/core/components/Layout.dart';
+import 'package:grocery_list/widgets/layout.dart';
 
-import 'package:grocery_list/modules/products/models/Product.dart';
+import 'package:grocery_list/models/product.dart';
 
-import 'package:grocery_list/modules/products/services/ProductService.dart';
+import 'package:grocery_list/services/product_service.dart';
 
-class CreateProductForm extends StatefulWidget {
+class CreateProductScreen extends StatefulWidget {
   @override
-  _CreateProductFormState createState() => new _CreateProductFormState();
+  _CreateProductScreenState createState() => new _CreateProductScreenState();
 }
 
-class _CreateProductFormState extends State<CreateProductForm> {
+class _CreateProductScreenState extends State<CreateProductScreen> {
   final formKey = GlobalKey<FormState>();
   ProductService productService = ProductService();
 

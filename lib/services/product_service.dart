@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:grocery_list/modules/products/models/Product.dart';
+import 'package:grocery_list/models/product.dart';
 
 class ProductService {
   ProductService();

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_list/modules/lists/models/GroceryListModel.dart';
+import 'package:grocery_list/models/grocery_list_model.dart';
 
 class ListItem extends StatelessWidget {
   ListItem({this.list, this.deleteList});

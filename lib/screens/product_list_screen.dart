@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:grocery_list/modules/products/ProductList.dart';
-import 'package:grocery_list/modules/products/models/Product.dart';
+import 'package:grocery_list/widgets/product_list.dart';
+import 'package:grocery_list/models/product.dart';
 
-import 'package:grocery_list/modules/products/services/ProductService.dart';
+import 'package:grocery_list/services/product_service.dart';
 
-class ProductContainer extends StatefulWidget {
+class ProductListScreen extends StatefulWidget {
   @override
-  _ProductState createState() => new _ProductState();
+  _ProductListScreenState createState() => new _ProductListScreenState();
 }
 
-class _ProductState extends State<ProductContainer> {
+class _ProductListScreenState extends State<ProductListScreen> {
   ProductService productService = ProductService();
 
   @override
