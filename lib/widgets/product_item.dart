@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_list/models/product.dart';
 
-class ProductItem extends StatelessWidget {
+class ProductItem extends StatefulWidget {
   ProductItem(
       {this.product,
       this.deleteProduct,
@@ -15,8 +15,16 @@ class ProductItem extends StatelessWidget {
   final Function addToList;
   final String listId;
 
+  @override
+  _ProductItemState createState() => _ProductItemState();
+}
+
+class _ProductItemState extends State<ProductItem> {
+  bool enabled = true;
+
   void _pushProductDetail(BuildContext context) {
-    Navigator.pushNamed(context, '/products/detail', arguments: this.product);
+    Navigator.pushNamed(context, '/products/detail',
+        arguments: this.widget.product);
   }
 
   @override
@@ -27,19 +35,30 @@ class ProductItem extends StatelessWidget {
         child: Column(
           children: <Widget>[
             ListTile(
-              leading: Icon(Icons.album),
-              title: Text(product != null ? product.name : 'Product name'),
+              leading: IconButton(
+                icon: Icon(Icons.done, color: Colors.green),
+                onPressed: () {
+                  this.setState(() {
+                    enabled = !enabled;
+                  });
+                },
+              ),
+              enabled: enabled,
+              title: Text(widget.product != null
+                  ? widget.product.name
+                  : 'Product name'),
               subtitle: Text('Amount'),
               onTap: () => _pushProductDetail(context),
               trailing: IconButton(
                 icon: Icon(Icons.delete),
-                onPressed: deleteProduct != null
-                    ? () => deleteProduct(product.documentID)
-                    : () => removeFromList(listId, product),
+                onPressed: widget.deleteProduct != null
+                    ? () => widget.deleteProduct(widget.product.documentID)
+                    : () =>
+                        widget.removeFromList(widget.listId, widget.product),
               ),
-              onLongPress: addToList != null
+              onLongPress: widget.addToList != null
                   ? () {
-                      addToList(product, listId);
+                      widget.addToList(widget.product, widget.listId);
                       Scaffold.of(context).showSnackBar(SnackBar(
                         content: Text("Product added!"),
                       ));
