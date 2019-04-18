@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:grocery_list/widgets/product_list.dart';
+import 'package:grocery_list/widgets/inherited/with_delete.dart';
 import 'package:grocery_list/models/product.dart';
 
 import 'package:grocery_list/services/product_service.dart';
@@ -25,7 +26,10 @@ class _ProductListScreenState extends State<ProductListScreen> {
 
         final products = getProducts(snapshot.data.documents);
 
-        return ProductList(products: products, deleteProduct: deleteProduct);
+        return new WithDelete(
+          delete: deleteProduct,
+          child: ProductList(products: products),
+        );
       },
     );
   }

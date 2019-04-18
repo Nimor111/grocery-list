@@ -6,11 +6,9 @@ import 'package:grocery_list/widgets/layout.dart';
 import 'package:grocery_list/models/product.dart';
 
 class ProductList extends StatelessWidget {
-  ProductList(
-      {@required this.products, this.deleteProduct, this.removeFromList});
+  ProductList({@required this.products, this.removeFromList});
 
   final List<Product> products;
-  final Function deleteProduct;
   final Function removeFromList;
 
   @override
@@ -25,7 +23,6 @@ class ProductList extends StatelessWidget {
       return products != []
           ? ProductItem(
               product: products[index],
-              deleteProduct: deleteProduct,
               removeFromList: removeFromList,
               listId: args != null ? args['listId'] : null,
               addToList: args != null ? args['addToList'] : null,
@@ -34,7 +31,7 @@ class ProductList extends StatelessWidget {
     }
 
     return Layout(
-      title: 'All products',
+      title: 'Available products',
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () => _pushAddProduct(context),

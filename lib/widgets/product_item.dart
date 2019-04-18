@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_list/models/product.dart';
+import 'package:grocery_list/widgets/inherited/with_delete.dart';
 
 class ProductItem extends StatefulWidget {
-  ProductItem(
-      {this.product,
-      this.deleteProduct,
-      this.listId,
-      this.removeFromList,
-      this.addToList});
+  ProductItem({this.product, this.listId, this.removeFromList, this.addToList});
 
   final Product product;
-  final Function deleteProduct;
   final Function removeFromList;
   final Function addToList;
   final String listId;
@@ -29,6 +24,7 @@ class _ProductItemState extends State<ProductItem> {
 
   @override
   Widget build(BuildContext context) {
+    final deleteWidget = WithDelete.of(context);
     return Container(
       padding: const EdgeInsets.all(8),
       child: Card(
@@ -51,8 +47,8 @@ class _ProductItemState extends State<ProductItem> {
               onTap: () => _pushProductDetail(context),
               trailing: IconButton(
                 icon: Icon(Icons.delete),
-                onPressed: widget.deleteProduct != null
-                    ? () => widget.deleteProduct(widget.product.documentID)
+                onPressed: deleteWidget != null
+                    ? () => deleteWidget.delete(widget.product.documentID)
                     : () =>
                         widget.removeFromList(widget.listId, widget.product),
               ),

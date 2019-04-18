@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_list/models/grocery_list_model.dart';
 
+import 'package:grocery_list/widgets/inherited/with_delete.dart';
+
 class ListItem extends StatelessWidget {
-  ListItem({this.list, this.deleteList});
+  ListItem({this.list});
 
   final GroceryListModel list;
-  final Function deleteList;
 
   void _pushListDetail(BuildContext context) {
     Navigator.pushNamed(context, '/lists/detail', arguments: this.list);
@@ -13,6 +14,7 @@ class ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final deleteList = WithDelete.of(context);
     return Container(
       padding: const EdgeInsets.all(8),
       child: Card(
@@ -26,7 +28,7 @@ class ListItem extends StatelessWidget {
               trailing: IconButton(
                 icon: Icon(Icons.delete),
                 onPressed: () {
-                  deleteList(list.documentID);
+                  deleteList.delete(list.documentID);
                 },
               ),
             ),
