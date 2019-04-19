@@ -18,7 +18,7 @@ class GroceryList extends StatelessWidget {
     }
 
     Widget _buildListItem(BuildContext context, int index) {
-      return lists != [] ? ListItem(list: lists[index]) : ListItem();
+      return lists != [] ? ListItem(list: lists[index]) : null;
     }
 
     return Layout(

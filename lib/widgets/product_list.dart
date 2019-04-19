@@ -27,7 +27,7 @@ class ProductList extends StatelessWidget {
               listId: args != null ? args['listId'] : null,
               addToList: args != null ? args['addToList'] : null,
             )
-          : ProductItem();
+          : null;
     }
 
     return Layout(

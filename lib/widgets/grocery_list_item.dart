@@ -4,7 +4,7 @@ import 'package:grocery_list/models/grocery_list_model.dart';
 import 'package:grocery_list/widgets/inherited/with_delete.dart';
 
 class ListItem extends StatelessWidget {
-  ListItem({this.list});
+  ListItem({@required this.list});
 
   final GroceryListModel list;
 
@@ -33,7 +33,7 @@ class ListItem extends StatelessWidget {
               },
               child: ListTile(
                 leading: Icon(Icons.list),
-                title: Text(list != null ? list.name : 'List name'),
+                title: Text(list.name),
                 subtitle: Text('Number of products'),
                 onTap: () => _pushListDetail(context),
               ),
