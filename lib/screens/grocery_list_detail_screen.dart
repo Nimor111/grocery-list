@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:grocery_list/widgets/product_item.dart';
+import 'package:grocery_list/widgets/product_list.dart';
+import 'package:grocery_list/widgets/inherited/with_actions.dart';
 
 import 'package:grocery_list/widgets/layout.dart';
 import 'package:grocery_list/models/grocery_list_model.dart';
@@ -13,13 +15,14 @@ class GroceryListDetailScreen extends StatelessWidget {
   void _pushAvailableProducts(BuildContext context, GroceryListModel list) {
     Navigator.of(context).pushNamed('/products', arguments: <String, dynamic>{
       'listId': list.documentID,
-      'addToList': listService.addProductToList,
+      'addToList': listService.addProductToList
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    GroceryListModel list = ModalRoute.of(context).settings.arguments;
+    final dynamic args = ModalRoute.of(context).settings.arguments;
+    final GroceryListModel list = args['list'];
 
     // TODO move to service as get list products?
     final listProductItems = new StreamBuilder<DocumentSnapshot>(
@@ -33,19 +36,15 @@ class GroceryListDetailScreen extends StatelessWidget {
           }
 
           final list = GroceryListModel.fromSnapshot(snapshot.data);
-          final products = list.products
-              .map((product) => ProductItem(
-                  product: product,
-                  listId: list.documentID,
-                  removeFromList: listService.removeProductFromList))
-              .toList();
 
-          return Column(
-            children: <Widget>[
-              Expanded(
-                child: ListView(children: products),
-              ),
-            ],
+          return new WithActions(
+            actions: <String, Function>{
+              'removeFromList': listService.removeProductFromList,
+            },
+            child: ProductList(
+              products: list.products,
+              listId: list.documentID,
+            ),
           );
         });
 

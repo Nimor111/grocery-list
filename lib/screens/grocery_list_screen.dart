@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:grocery_list/widgets/grocery_list.dart';
-import 'package:grocery_list/widgets/inherited/with_delete.dart';
+import 'package:grocery_list/widgets/inherited/with_actions.dart';
 import 'package:grocery_list/models/grocery_list_model.dart';
 import 'package:grocery_list/services/grocery_list_service.dart';
 
@@ -25,8 +25,10 @@ class _GroceryListScreenState extends State<GroceryListScreen> {
 
         final lists = getLists(snapshot.data.documents);
 
-        return WithDelete(
-          delete: deleteList,
+        return WithActions(
+          actions: <String, Function>{
+            'deleteList': deleteList,
+          },
           child: GroceryList(lists: lists),
         );
       },

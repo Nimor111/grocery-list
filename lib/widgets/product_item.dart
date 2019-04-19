@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_list/models/product.dart';
-import 'package:grocery_list/widgets/inherited/with_delete.dart';
+import 'package:grocery_list/widgets/inherited/with_actions.dart';
 
 class ProductItem extends StatefulWidget {
-  ProductItem(
-      {@required this.product,
-      this.listId,
-      this.removeFromList,
-      this.addToList});
+  ProductItem({@required this.product, this.listId});
 
   final Product product;
-  final Function removeFromList;
-  final Function addToList;
   final String listId;
 
   @override
@@ -46,27 +40,27 @@ class _ProductItemState extends State<ProductItem> {
         : Icon(Icons.apps);
   }
 
-  Function _longPressAction() {
-    return widget.addToList != null
+  Function _longPressAction(WithActions actionsWidget) {
+    return actionsWidget.actions['addToList'] != null
         ? () {
-            widget.addToList(widget.product, widget.listId);
+            actionsWidget.actions['addToList'](widget.product, widget.listId);
             Scaffold.of(context).showSnackBar(SnackBar(
-              content: Text("Product added!"),
+              content: Text('Product added!'),
             ));
           }
         : () {};
   }
 
-  Function _dismissedAction() {
-    final deleteWidget = WithDelete.of(context);
-    return deleteWidget != null
+  Function _dismissedAction(WithActions actionsWidget) {
+    return actionsWidget.actions['deleteProduct'] != null
         ? () {
-            deleteWidget.delete(widget.product.documentID);
+            actionsWidget.actions['deleteProduct'](widget.product.documentID);
 
-            _showSnackbar(context, "Product deleted");
+            _showSnackbar(context, 'Product deleted');
           }
         : () {
-            widget.removeFromList(widget.listId, widget.product);
+            actionsWidget.actions['removeFromList'](
+                widget.listId, widget.product);
 
             _showSnackbar(context, "Product removed from list");
           };
@@ -74,6 +68,7 @@ class _ProductItemState extends State<ProductItem> {
 
   @override
   Widget build(BuildContext context) {
+    final actionsWidget = WithActions.of(context);
     return Container(
       padding: const EdgeInsets.all(8),
       child: Card(
@@ -82,7 +77,7 @@ class _ProductItemState extends State<ProductItem> {
             Dismissible(
               key: Key(widget.product.documentID),
               onDismissed: (_direction) {
-                final Function action = _dismissedAction();
+                final Function action = _dismissedAction(actionsWidget);
                 action();
               },
               child: ListTile(
@@ -92,7 +87,7 @@ class _ProductItemState extends State<ProductItem> {
                 subtitle: Text('Amount'),
                 onTap: () => _pushProductDetail(context),
                 onLongPress: () {
-                  final Function action = _longPressAction();
+                  final Function action = _longPressAction(actionsWidget);
                   action();
                 },
               ),

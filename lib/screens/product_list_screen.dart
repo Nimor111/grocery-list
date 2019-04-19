@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:grocery_list/widgets/product_list.dart';
-import 'package:grocery_list/widgets/inherited/with_delete.dart';
+import 'package:grocery_list/widgets/layout.dart';
+import 'package:grocery_list/widgets/inherited/with_actions.dart';
 import 'package:grocery_list/models/product.dart';
 
 import 'package:grocery_list/services/product_service.dart';
@@ -15,6 +16,10 @@ class ProductListScreen extends StatefulWidget {
 class _ProductListScreenState extends State<ProductListScreen> {
   ProductService productService = ProductService();
 
+  void _pushAddProduct(BuildContext context) {
+    Navigator.pushNamed(context, '/new-product');
+  }
+
   @override
   Widget build(BuildContext context) {
     return new StreamBuilder<QuerySnapshot>(
@@ -26,9 +31,16 @@ class _ProductListScreenState extends State<ProductListScreen> {
 
         final products = getProducts(snapshot.data.documents);
 
-        return new WithDelete(
-          delete: deleteProduct,
-          child: ProductList(products: products),
+        return Layout(
+          title: 'Available products',
+          floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: () => _pushAddProduct(context),
+          ),
+          body: new WithActions(
+            actions: <String, Function>{'deleteProduct': deleteProduct},
+            child: ProductList(products: products),
+          ),
         );
       },
     );
