@@ -20,16 +20,22 @@ class ListItem extends StatelessWidget {
       child: Card(
         child: Column(
           children: <Widget>[
-            ListTile(
-              leading: Icon(Icons.list),
-              title: Text(list != null ? list.name : 'List name'),
-              subtitle: Text('Number of products'),
-              onTap: () => _pushListDetail(context),
-              trailing: IconButton(
-                icon: Icon(Icons.delete),
-                onPressed: () {
-                  deleteList.delete(list.documentID);
-                },
+            Dismissible(
+              key: Key(list.documentID),
+              onDismissed: (_direction) {
+                deleteList.delete(list.documentID);
+
+                Scaffold.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text("List deleted"),
+                  ),
+                );
+              },
+              child: ListTile(
+                leading: Icon(Icons.list),
+                title: Text(list != null ? list.name : 'List name'),
+                subtitle: Text('Number of products'),
+                onTap: () => _pushListDetail(context),
               ),
             ),
           ],

@@ -22,6 +22,14 @@ class _ProductItemState extends State<ProductItem> {
         arguments: this.widget.product);
   }
 
+  _showSnackbar(BuildContext context, String message) {
+    Scaffold.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final deleteWidget = WithDelete.of(context);
@@ -30,36 +38,43 @@ class _ProductItemState extends State<ProductItem> {
       child: Card(
         child: Column(
           children: <Widget>[
-            ListTile(
-              leading: IconButton(
-                icon: Icon(Icons.done, color: Colors.green),
-                onPressed: () {
-                  this.setState(() {
-                    enabled = !enabled;
-                  });
-                },
+            Dismissible(
+              key: Key(widget.product.documentID),
+              onDismissed: (_direction) {
+                if (deleteWidget != null) {
+                  deleteWidget.delete(widget.product.documentID);
+
+                  _showSnackbar(context, "Product deleted");
+                } else {
+                  widget.removeFromList(widget.listId, widget.product);
+
+                  _showSnackbar(context, "Product removed from list");
+                }
+              },
+              child: ListTile(
+                leading: IconButton(
+                  icon: Icon(Icons.done, color: Colors.green),
+                  onPressed: () {
+                    this.setState(() {
+                      enabled = !enabled;
+                    });
+                  },
+                ),
+                enabled: enabled,
+                title: Text(widget.product != null
+                    ? widget.product.name
+                    : 'Product name'),
+                subtitle: Text('Amount'),
+                onTap: () => _pushProductDetail(context),
+                onLongPress: widget.addToList != null
+                    ? () {
+                        widget.addToList(widget.product, widget.listId);
+                        Scaffold.of(context).showSnackBar(SnackBar(
+                          content: Text("Product added!"),
+                        ));
+                      }
+                    : null,
               ),
-              enabled: enabled,
-              title: Text(widget.product != null
-                  ? widget.product.name
-                  : 'Product name'),
-              subtitle: Text('Amount'),
-              onTap: () => _pushProductDetail(context),
-              trailing: IconButton(
-                icon: Icon(Icons.delete),
-                onPressed: deleteWidget != null
-                    ? () => deleteWidget.delete(widget.product.documentID)
-                    : () =>
-                        widget.removeFromList(widget.listId, widget.product),
-              ),
-              onLongPress: widget.addToList != null
-                  ? () {
-                      widget.addToList(widget.product, widget.listId);
-                      Scaffold.of(context).showSnackBar(SnackBar(
-                        content: Text("Product added!"),
-                      ));
-                    }
-                  : null,
             ),
           ],
         ),
