@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:grocery_list/widgets/product_item.dart';
 import 'package:grocery_list/widgets/product_list.dart';
-import 'package:grocery_list/widgets/inherited/with_actions.dart';
 
 import 'package:grocery_list/widgets/layout.dart';
 import 'package:grocery_list/models/grocery_list_model.dart';
@@ -15,7 +13,7 @@ class GroceryListDetailScreen extends StatelessWidget {
   void _pushAvailableProducts(BuildContext context, GroceryListModel list) {
     Navigator.of(context).pushNamed('/products', arguments: <String, dynamic>{
       'listId': list.documentID,
-      'addToList': listService.addProductToList
+      'inAddProducts': true,
     });
   }
 
@@ -37,14 +35,10 @@ class GroceryListDetailScreen extends StatelessWidget {
 
           final list = GroceryListModel.fromSnapshot(snapshot.data);
 
-          return new WithActions(
-            actions: <String, Function>{
-              'removeFromList': listService.removeProductFromList,
-            },
-            child: ProductList(
-              products: list.products,
-              listId: list.documentID,
-            ),
+          return ProductList(
+            products: list.products,
+            listId: list.documentID,
+            inAddProducts: false,
           );
         });
 

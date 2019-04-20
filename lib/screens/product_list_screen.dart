@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:grocery_list/widgets/product_list.dart';
 import 'package:grocery_list/widgets/layout.dart';
-import 'package:grocery_list/widgets/inherited/with_actions.dart';
 import 'package:grocery_list/models/product.dart';
 
 import 'package:grocery_list/services/product_service.dart';
@@ -22,6 +21,8 @@ class _ProductListScreenState extends State<ProductListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final dynamic args = ModalRoute.of(context).settings.arguments;
+
     return new StreamBuilder<QuerySnapshot>(
       stream: Firestore.instance.collection('products').snapshots(),
       builder: (context, snapshot) {
@@ -37,10 +38,11 @@ class _ProductListScreenState extends State<ProductListScreen> {
             child: Icon(Icons.add),
             onPressed: () => _pushAddProduct(context),
           ),
-          body: new WithActions(
-            actions: <String, Function>{'deleteProduct': deleteProduct},
-            child: ProductList(products: products),
-          ),
+          body: ProductList(
+              products: products,
+              inAddProducts: (args == null || args['inAddProducts'] == null)
+                  ? false
+                  : args['inAddProducts']),
         );
       },
     );

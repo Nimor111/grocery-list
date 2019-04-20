@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
 import 'package:grocery_list/widgets/product_item.dart';
-import 'package:grocery_list/widgets/inherited/with_actions.dart';
 
 import 'package:grocery_list/models/product.dart';
 
 class ProductList extends StatelessWidget {
-  ProductList({@required this.products, this.listId});
+  ProductList(
+      {@required this.products, this.listId, @required this.inAddProducts});
 
   final List<Product> products;
   final String listId;
+  final bool inAddProducts;
 
   // TODO think of a better way to handle this components' args
   String _getListId(dynamic args) {
@@ -34,16 +35,10 @@ class ProductList extends StatelessWidget {
 
     Widget _buildProductItem(BuildContext context, int index) {
       return products != []
-          ? WithActions(
-              actions: <String, Function>{
-                'addToList': args == null
-                    ? null
-                    : (args['list'] == null ? args['addToList'] : null)
-              },
-              child: ProductItem(
-                product: products[index],
-                listId: _getListId(args),
-              ),
+          ? ProductItem(
+              product: products[index],
+              listId: _getListId(args),
+              inAddProducts: inAddProducts,
             )
           : null;
     }

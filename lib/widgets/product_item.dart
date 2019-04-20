@@ -3,10 +3,12 @@ import 'package:grocery_list/models/product.dart';
 import 'package:grocery_list/widgets/inherited/with_actions.dart';
 
 class ProductItem extends StatefulWidget {
-  ProductItem({@required this.product, this.listId});
+  ProductItem(
+      {@required this.product, this.listId, @required this.inAddProducts});
 
   final Product product;
   final String listId;
+  final bool inAddProducts;
 
   @override
   _ProductItemState createState() => _ProductItemState();
@@ -29,7 +31,7 @@ class _ProductItemState extends State<ProductItem> {
   }
 
   Widget _leadingSection() {
-    return widget.listId != null
+    return widget.inAddProducts == false && widget.listId != null
         ? IconButton(
             icon: Icon(Icons.done, color: Colors.green),
             onPressed: () {
@@ -41,7 +43,7 @@ class _ProductItemState extends State<ProductItem> {
   }
 
   Function _longPressAction(WithActions actionsWidget) {
-    return actionsWidget.actions['addToList'] != null
+    return widget.inAddProducts
         ? () {
             actionsWidget.actions['addToList'](widget.product, widget.listId);
             Scaffold.of(context).showSnackBar(SnackBar(
@@ -52,7 +54,7 @@ class _ProductItemState extends State<ProductItem> {
   }
 
   Function _dismissedAction(WithActions actionsWidget) {
-    return actionsWidget.actions['deleteProduct'] != null
+    return widget.listId == null || widget.inAddProducts == true
         ? () {
             actionsWidget.actions['deleteProduct'](widget.product.documentID);
 
