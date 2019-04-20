@@ -12,7 +12,7 @@ class GroceryListDetailScreen extends StatelessWidget {
 
   void _pushAvailableProducts(BuildContext context, GroceryListModel list) {
     Navigator.of(context).pushNamed('/products', arguments: <String, dynamic>{
-      'listId': list.documentID,
+      'list': list,
       'inAddProducts': true,
     });
   }

@@ -12,7 +12,6 @@ class ProductList extends StatelessWidget {
   final String listId;
   final bool inAddProducts;
 
-  // TODO think of a better way to handle this components' args
   String _getListId(dynamic args) {
     if (listId != null) {
       return listId;
@@ -22,11 +21,7 @@ class ProductList extends StatelessWidget {
       return null;
     }
 
-    if (args['list'] == null) {
-      return args['listId'];
-    }
-
-    return null;
+    return args['list'].documentID;
   }
 
   @override

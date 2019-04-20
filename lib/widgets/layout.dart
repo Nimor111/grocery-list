@@ -14,10 +14,11 @@ class Layout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: GroceryDrawer(),
-        backgroundColor: Colors.white,
-        appBar: GroceryBar(title: this.title),
-        floatingActionButton: this.floatingActionButton,
-        body: body);
+      drawer: GroceryDrawer(),
+      backgroundColor: Colors.white,
+      appBar: GroceryBar(title: this.title),
+      floatingActionButton: this.floatingActionButton,
+      body: body,
+    );
   }
 }
