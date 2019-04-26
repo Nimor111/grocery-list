@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:grocery_list/widgets/layout.dart';
+import 'package:grocery_list/widgets/camera.dart';
+
 import 'package:grocery_list/models/product.dart';
 
 class ProductDetailScreen extends StatelessWidget {
@@ -17,8 +19,7 @@ class ProductDetailScreen extends StatelessWidget {
         children: <Widget>[
           Container(
             padding: const EdgeInsets.all(32),
-            child: Image.asset('images/default.png',
-                width: 300, height: 300, fit: BoxFit.contain),
+            child: Camera(),
           ),
           Container(
             padding: const EdgeInsets.all(32),
