@@ -57,14 +57,10 @@ class _ProductItemState extends State<ProductItem> {
     return widget.listId == null || widget.inAddProducts == true
         ? () {
             actionsWidget.actions['deleteProduct'](widget.product.documentID);
-
-            _showSnackbar(context, 'Product deleted');
           }
         : () {
             actionsWidget.actions['removeFromList'](
                 widget.listId, widget.product);
-
-            _showSnackbar(context, "Product removed from list");
           };
   }
 

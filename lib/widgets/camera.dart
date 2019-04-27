@@ -9,16 +9,19 @@ import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 // TODO setup authentication for this
-class Camera extends StatelessWidget {
-  Future<File> _openCamera() async {
+class CameraStorage extends StatelessWidget {
+  Future<String> _openCamera() async {
     final File image = await ImagePicker.pickImage(
       source: ImageSource.camera,
     );
 
-    final String path = await _uploadFile(image);
-    print("FILEPATH: " + path);
+    if (image != null) {
+      final String path = await _uploadFile(image);
+      print("FILEPATH: " + path);
+      return path;
+    }
 
-    return image;
+    return null;
   }
 
   Future<String> _uploadFile(File image) async {

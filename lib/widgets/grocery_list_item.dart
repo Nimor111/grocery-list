@@ -28,12 +28,6 @@ class ListItem extends StatelessWidget {
               key: Key(list.documentID),
               onDismissed: (_direction) {
                 actionsWidget.actions["deleteList"](list.documentID);
-
-                Scaffold.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text("List deleted"),
-                  ),
-                );
               },
               child: ListTile(
                 leading: Icon(Icons.list),
