@@ -22,14 +22,6 @@ class _ProductItemState extends State<ProductItem> {
         arguments: this.widget.product);
   }
 
-  _showSnackbar(BuildContext context, String message) {
-    Scaffold.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-      ),
-    );
-  }
-
   Widget _leadingSection() {
     return widget.inAddProducts == false && widget.listId != null
         ? IconButton(
@@ -45,7 +37,8 @@ class _ProductItemState extends State<ProductItem> {
   Function _longPressAction(WithActions actionsWidget) {
     return widget.inAddProducts
         ? () {
-            actionsWidget.actions['addToList'](widget.product, widget.listId);
+            actionsWidget.actions['addToList'](
+                widget.product.reference, widget.listId);
             Scaffold.of(context).showSnackBar(SnackBar(
               content: Text('Product added!'),
             ));
@@ -60,7 +53,7 @@ class _ProductItemState extends State<ProductItem> {
           }
         : () {
             actionsWidget.actions['removeFromList'](
-                widget.listId, widget.product);
+                widget.listId, widget.product.reference);
           };
   }
 

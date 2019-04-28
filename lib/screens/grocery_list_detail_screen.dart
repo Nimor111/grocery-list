@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:grocery_list/widgets/product_list.dart';
 
@@ -21,22 +20,17 @@ class GroceryListDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final dynamic args = ModalRoute.of(context).settings.arguments;
     final GroceryListModel list = args['list'];
+    final listService = GroceryListService();
 
-    // TODO move to service as get list products?
-    final listProductItems = new StreamBuilder<DocumentSnapshot>(
-        stream: Firestore.instance
-            .collection('/lists')
-            .document(list.documentID)
-            .snapshots(),
+    final listProductItems = new FutureBuilder<GroceryListModel>(
+        future: listService.getSingleList(list.documentID),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return LinearProgressIndicator();
           }
 
-          final list = GroceryListModel.fromSnapshot(snapshot.data);
-
           return ProductList(
-            products: list.products,
+            products: snapshot.data.products,
             listId: list.documentID,
             inAddProducts: false,
           );
