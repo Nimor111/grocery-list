@@ -14,7 +14,7 @@ class ProductDetailScreen extends StatelessWidget {
     final String description = product?.description;
 
     return Layout(
-      title: 'Product detail',
+      title: name,
       body: ListView(
         children: <Widget>[
           Container(
