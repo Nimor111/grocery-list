@@ -32,7 +32,7 @@ class ListItem extends StatelessWidget {
               child: ListTile(
                 leading: Icon(Icons.list),
                 title: Text(list.name),
-                subtitle: Text('Number of products'),
+                subtitle: Text(list.productCount.toString() + " product(s)"),
                 onTap: () => _pushListDetail(context),
               ),
             ),

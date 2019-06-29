@@ -8,10 +8,13 @@ class GroceryListModel {
   List<Product> products;
   DocumentReference reference;
 
+  int productCount = 0;
+
   GroceryListModel(
       {this.documentID,
       this.name,
       this.productRefs,
+      this.productCount,
       this.products,
       this.reference});
 
@@ -20,6 +23,7 @@ class GroceryListModel {
     assert(map['name'] != null);
     this.documentID = documentID;
     name = map['name'];
+    productCount = map['productCount'];
     productRefs = List<DocumentReference>.from(map['products']);
   }
 

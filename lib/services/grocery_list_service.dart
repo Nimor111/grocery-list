@@ -73,6 +73,7 @@ class GroceryListService {
       if (listSnapshot.exists) {
         await tx.update(listRef, <String, dynamic>{
           'products': FieldValue.arrayUnion([productRef]),
+          'productCount': FieldValue.increment(1),
         }).catchError((e) => print(e));
       }
     });
@@ -88,6 +89,7 @@ class GroceryListService {
       if (listSnapshot.exists) {
         await tx.update(listRef, <String, dynamic>{
           'products': FieldValue.arrayRemove([productRef]),
+          'productCount': FieldValue.increment(-1),
         }).catchError((e) => print(e));
       }
     });
