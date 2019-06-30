@@ -19,6 +19,8 @@ class ListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final actionsWidget = WithActions.of(context);
+    var productCount = list.productCount != null ? list.productCount : 0;
+
     return Container(
       padding: const EdgeInsets.all(8),
       child: Card(
@@ -32,7 +34,7 @@ class ListItem extends StatelessWidget {
               child: ListTile(
                 leading: Icon(Icons.list),
                 title: Text(list.name),
-                subtitle: Text(list.productCount.toString() + " product(s)"),
+                subtitle: Text(productCount.toString() + " product(s)"),
                 onTap: () => _pushListDetail(context),
               ),
             ),
